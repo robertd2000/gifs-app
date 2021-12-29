@@ -28,6 +28,71 @@
   color: #61dafb;
 }
 
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.image {
+  padding: 5px 25px 10px 25px;
+  max-width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.image:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.search > input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.search > input[type="submit"] {
+  padding: 5px;
+  width: 80px;
+  border-width: 2px;
+  background-color: transparent;
+  border-color: black;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.search > input[type="submit"]:hover {
+  background-color: #282c34;
+  color: antiquewhite;
+}
+
+@media screen and (min-width: 694px) and (max-width: 915px) {
+  .image {
+    max-width: 33%;
+  }
+}
+
+@media screen and (min-width: 652px) and (max-width: 693px) {
+  .image {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 651px) {
+  .image {
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
