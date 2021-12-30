@@ -5,6 +5,7 @@ export interface gifsType {
     loading: boolean
     search: string
     offset: number
+    total: number
 }
 
 export interface gifInfoType {

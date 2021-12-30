@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 interface SearchType {
-    searchHandler: (text: string) => void
+    searchHandler: (text: string, offset: number) => void
 }
 export const Search: React.FC<SearchType> = ({searchHandler}) => {
     const [text, setText] = useState('')
@@ -11,7 +11,7 @@ export const Search: React.FC<SearchType> = ({searchHandler}) => {
     }
 
     const clickHandler = () => {
-        if (text.length > 0) searchHandler(text)
+        if (text.length > 0) searchHandler(text, 0)
     }
 
     return <div className="search">
