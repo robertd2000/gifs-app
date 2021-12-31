@@ -7,7 +7,7 @@ const initialState: gifsType = {
     gifsList: [],
     error: false,
     loading: false,
-    search: '',
+    search: 'dog',
     offset: 0,
     total: 0
 }
@@ -31,10 +31,15 @@ export const updateGifsList = createAsyncThunk(
 const gifsReducer = createSlice({
     name: 'gifsReducer',
     initialState,
-    reducers: {},
+    reducers: {
+        setSearch: (state, action) => {
+            state.search = action.payload
+        }
+    },
     extraReducers: builder => {
         builder.addCase(getGifsList.pending, (state, action) => {
             state.loading = true
+            state.gifsList = []
         })
         .addCase(getGifsList.fulfilled, (state, action) => {
             console.log(action.payload);
@@ -53,4 +58,5 @@ const gifsReducer = createSlice({
     }
 })
 
+export const {setSearch} = gifsReducer.actions
 export default gifsReducer.reducer
