@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
-import { getGifsList, setSearch, updateGifsList } from './redux/reducer';
+import { getGifsList, setSearch } from './redux/reducer';
 import { List } from './component/List';
 import { Search } from './component/Search';
 import { Header } from './component/Header';
+import { Loader } from './component/Loader';
 
 function App() {
   const dispatch = useAppDispatch()
@@ -15,7 +16,7 @@ function App() {
   }, [])
 
   const searchHandler = (text: string, offset: number) => {
-    dispatch(updateGifsList({search: text, offset: offset}))
+    dispatch(getGifsList({search: text, offset: offset}))
     dispatch(setSearch(text))
   }
 
@@ -24,8 +25,10 @@ function App() {
       <Header />
       <Search searchHandler={searchHandler}/>
       {
-        gifsList && <List list={gifsList} search={searchHandler} searchText={search} total={total} />
-      }
+        !loading ?
+         gifsList && <List list={gifsList} search={searchHandler} searchText={search} total={total} />
+        : <Loader />
+        }
       
     </div>
   );

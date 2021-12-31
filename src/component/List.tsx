@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-// import InfiniteScroll from 'react-infinite-scroller';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import {getGifs} from '../api/api';
@@ -19,6 +18,11 @@ export const List: React.FC<ListType> = ({list, search, total, searchText}) => {
     const [hasMore, sethasMore] = useState(true)
 
     useEffect(() => {
+        setstate([])
+    }, [])
+
+    useEffect(() => {
+        setstate([])
         setstate(list)            
         onScrollList()
     }, [list])
@@ -42,15 +46,13 @@ export const List: React.FC<ListType> = ({list, search, total, searchText}) => {
         }
     }
 
-    console.log(state);
-    
     return (
         <div>  
             <InfiniteScroll 
                 dataLength={state.length}
                 next={onScrollList}
                 hasMore={hasMore} 
-                loader={<div className="loader" key={0}>Loading ...</div>}
+                loader={<div key={0}>Loading ...</div>}
             > 
                 <div className="images" >
                 {

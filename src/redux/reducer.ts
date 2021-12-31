@@ -20,14 +20,6 @@ export const getGifsList = createAsyncThunk(
     }
 )
 
-export const updateGifsList = createAsyncThunk(
-    'gifs/updateGifsList',
-    async ({search, offset}: {search: string, offset: number}) => {
-        const response = await getGifs(search, offset)
-        return response
-    }
-)
-
 const gifsReducer = createSlice({
     name: 'gifsReducer',
     initialState,
@@ -44,14 +36,6 @@ const gifsReducer = createSlice({
         .addCase(getGifsList.fulfilled, (state, action) => {
             console.log(action.payload);
             state.gifsList = action.payload.data
-            state.total = action.payload.pagination.total_count
-            state.loading = false
-        })
-        .addCase(updateGifsList.pending, (state, action) => {
-            state.loading = true
-        })
-        .addCase(updateGifsList.fulfilled, (state, action) => {
-            state.gifsList = [...state.gifsList, ...action.payload.data]
             state.total = action.payload.pagination.total_count
             state.loading = false
         })
